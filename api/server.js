@@ -1,6 +1,5 @@
 const express = require('express');
 const server = express();
-
 server.use(express.json());
 
 const cors = require('cors');
@@ -8,9 +7,15 @@ server.use(cors());
 
 server.use(logger);
 
+const authRouter = require('../routes/auth/authRouter')
+
+
+
 server.get('/', (req, res) => {
     res.status(200).send("Will Provide art pictures in the future")
 })
+
+server.use('/api', authRouter);
 
 
 
