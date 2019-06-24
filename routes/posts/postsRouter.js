@@ -30,7 +30,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
     const {id} = req.params;
     const changes = req.body;
 
-    if(changes.id || changes.author_id) {
+    if(changes.id || changes.username_id) {
         res.status(403).json({errorMessage: "Not allowed to change ids" })
     }
 
@@ -61,7 +61,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
 
 router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
     const post = {
-        author_id: req.user.author_id,
+        username_id: req.user.username_id,
         imgURL: req.body.imgURL,
         description: req.body.description,
         votes: 0 
@@ -109,7 +109,7 @@ function verifyCredentials(req, res, next) {
                 res.status(401).json({ message: 'Invalid Credentials' });
             }
             else {
-                req.user = {author_id: decodedToken.author_id, author: decodedToken.author }
+                req.user = {username_id: decodedToken.username_id, username: decodedToken.username }
                 next();
             }
         })

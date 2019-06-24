@@ -8,7 +8,7 @@ function generateToken(user) {
 
     const payload = {
       author_id: user.id, // standard claim = sub
-      author: user.author
+      author: user.username
     };
 
   
