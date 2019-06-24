@@ -18,7 +18,7 @@ function getPosts() {
 
   for(let i=0; i<nbrPosts; i++) {
     post = {
-      author_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the initial users
+      username_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the initial users
       description: faker.company.bs(),
       imgURL: faker.image.imageUrl(640, 480, getTopic() ),
       votes: 0

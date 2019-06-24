@@ -19,7 +19,7 @@ function createUsers() {
 
   for(let i=0; i<nbrUsers; i++) {
     user = {
-      author: faker.name.findName(),
+      username: faker.name.findName(),
       email: faker.internet.email(),
       password: bcrypt.hashSync('pass'),
       dob: faker.date.between("1950-01-01", "2000-01-01"),
