@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
 
     .createTable('users', (tbl) => {
         tbl.increments();
-        tbl.string('author', 128).notNullable().unique();
+        tbl.string('username', 128).notNullable().unique();
         tbl.string('email', 128).notNullable().unique();
         tbl.string('password', 128).notNullable();
         tbl.string('dob', 128);
@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
 
     .createTable('posts', (tbl) => {
         tbl.increments();
-        tbl.integer('author_id')
+        tbl.integer('username_id')
             .unsigned()
             .notNullable()
             .references('id')
