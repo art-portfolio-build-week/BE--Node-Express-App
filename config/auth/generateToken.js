@@ -7,8 +7,8 @@ const secrets = require('./secrets');
 function generateToken(user) {
 
     const payload = {
-      author_id: user.id, // standard claim = sub
-      author: user.username
+      username_id: user.id, // standard claim = sub
+      username: user.username
     };
 
   

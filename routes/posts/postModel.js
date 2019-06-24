@@ -1,9 +1,9 @@
 const db = require('../../config/database/dbConfig');
 
 function findAll() {
-        return db.select('posts.*', 'users.author')
+        return db.select('posts.*', 'users.username')
             .from('posts')
-            .leftJoin('users', 'users.id', 'posts.author_id')
+            .leftJoin('users', 'users.id', 'posts.username_id')
 }
 
 function add(post) {
@@ -17,8 +17,6 @@ function add(post) {
 }
 
 function update(id, changes) {
-    console.log('id: ', id);
-    console.log('changes: ', changes);
     return db('posts')
     .where(id)
     .update(changes)

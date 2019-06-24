@@ -66,6 +66,8 @@ router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
         description: req.body.description,
         votes: 0 
     }
+
+    console.log(post)
     try {
         const newPost = await postModel.add(post, 'id');
         res.status(201).json({newPost});
