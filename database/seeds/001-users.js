@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex, Promise) {
   
-  return knex('users').truncate()  // Deletes ALL existing entries and reset primary key
+  return knex('users').del()  // Deletes ALL existing entries and reset primary key
     .then(function () {
       return knex('users').insert(
         createUsers()
