@@ -4,9 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 
-const jwt = require('jsonwebtoken')
 const generateToken = require('../../config/auth/generateToken');
-const secret = require('../../config/auth/secrets')
 
 const authModel = require('./authModel');
 
@@ -23,14 +21,8 @@ router.post('/register', userCredentialsReceived, duplicatedCredentials, async (
 
     try {
         const addedUser = await authModel.add(user);
-        if(addedUser) {
-            token = generateToken(addedUser);
-            res.status(201).json({message: `welcome ${user.author}`, token})
-        }
-        else {
-            res.status(500).json({"errorMessage": "That was a problem adding user"})
-
-        }
+        token = generateToken(addedUser);
+        res.status(201).json({message: `welcome ${user.author}`, token})
     }
     catch {
         res.status(500).json({"errorMessage": "That was a problem registering"})

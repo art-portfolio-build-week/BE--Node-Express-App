@@ -7,7 +7,8 @@ server.use(cors());
 
 server.use(logger);
 
-const authRouter = require('../routes/auth/authRouter')
+const authRouter = require('../routes/auth/authRouter');
+const postRouter = require('../routes/posts/postsRouter');
 
 
 
@@ -16,6 +17,7 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api', authRouter);
+server.use('/api', postRouter);
 
 
 
