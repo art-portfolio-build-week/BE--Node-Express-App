@@ -22,6 +22,26 @@ router.get('/posts', async (req, res) => {
 })
 
 /****************************************************************************/
+/*                              Get a post  by Id                          */
+/****************************************************************************/
+router.get('/posts/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const post = await postModel.findBy({id});
+            if(post) {
+                res.status(200).json(post);
+            }
+            else {
+                res.status(404).json({message:'post not found'});
+            }  
+    }
+    catch {
+        res.status(500).json({errorMessage: "There was a problem getting the data"})
+    }
+})
+
+
+/****************************************************************************/
 /*                              update Existing post                        */
 /****************************************************************************/
 
@@ -41,7 +61,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
                 res.status(200).json({message:`${count} records updated`});
             }
             else {
-                res.status(400).json({message: 'post not found'});
+                res.status(404).json({message: 'post not found'});
             }
         }
         catch {

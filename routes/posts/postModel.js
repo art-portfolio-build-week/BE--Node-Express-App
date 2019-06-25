@@ -6,6 +6,10 @@ function findAll() {
             .leftJoin('users', 'users.id', 'posts.username_id')
 }
 
+function findBy(filter) {
+    return db('posts').where(filter).first();
+}
+
 function add(post) {
     return db('posts').insert(post, 'id')
         .then( ids => {
@@ -24,6 +28,7 @@ function update(id, changes) {
 
 module.exports = {
     findAll,
+    findBy,
     add,
     update,
 }
