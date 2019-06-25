@@ -1,5 +1,6 @@
 
 const faker = require('faker');
+const moment = require('moment');
 const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex, Promise) {
@@ -22,7 +23,7 @@ function createUsers() {
       username: faker.name.findName(),
       email: faker.internet.email(),
       password: bcrypt.hashSync('pass'),
-      dob: faker.date.between("1950-01-01", "2000-01-01"),
+      dob: moment(faker.date.between("1950-01-01", "2000-01-01")).format('L'),
       instagramHandle: faker.internet.userName(),
       witterHandle: faker.internet.userName()
     }
