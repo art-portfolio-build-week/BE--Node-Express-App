@@ -26,6 +26,12 @@ function update(id, changes) {
     return db('posts')
     .where(id)
     .update(changes)
+    .then(count => {
+        if (count > 0) 
+            return findBy(id);
+        else 
+            return null;
+    });
 }
 
 module.exports = {

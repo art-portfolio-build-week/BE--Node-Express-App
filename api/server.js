@@ -13,7 +13,7 @@ const postRouter = require('../routes/posts/postsRouter');
 
 
 server.get('/', (req, res) => {
-    res.status(200).send("Will Provide art pictures in the future")
+    res.status(200).send("Artista API")
 })
 
 server.use('/api', authRouter);

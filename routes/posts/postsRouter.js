@@ -56,9 +56,9 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
 
     if(changes.description || changes.imgURL || votes) {
         try {
-            count = await postModel.update({id}, changes)
-            if(count > 0) {
-                res.status(200).json({message:`${count} records updated`});
+            modifiedPost = await postModel.update({id}, changes)
+            if(modifiedPost) {
+                res.status(200).json({modifiedPost: modifiedPost});
             }
             else {
                 res.status(404).json({message: 'post not found'});
