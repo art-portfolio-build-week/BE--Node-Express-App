@@ -4,6 +4,8 @@ function findAll() {
         return db.select('posts.*', 'users.username')
             .from('posts')
             .leftJoin('users', 'users.id', 'posts.username_id')
+            .orderBy('id')
+
 }
 
 function findBy(filter) {
