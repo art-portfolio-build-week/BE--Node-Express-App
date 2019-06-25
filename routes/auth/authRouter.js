@@ -22,7 +22,7 @@ router.post('/register', userCredentialsReceived, duplicatedCredentials, async (
     try {
         const addedUser = await authModel.add(user);
         token = generateToken(addedUser);
-        res.status(201).json({message: `welcome ${user.username}`, id: user.id, token})
+        res.status(201).json({username: addedUser.username, id: addedUser.id, token})
     }
     catch {
         res.status(500).json({"errorMessage": "That was a problem registering"})
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
         const user = await authModel.findBy({email})
         if(user && bcrypt.compareSync(password, user.password)) {
             token = generateToken(user);
-            res.status(200).json({message: `welcome back ${user.username}`, id:user.id, token})
+            res.status(200).json({username: user.username, id: user.id, token})
         }
         else {
             res.status(401).json({ message: 'Invalid Credentials' });
