@@ -1,4 +1,7 @@
+//When reseeding check if username_id exists in users table if not will break foreign keys constraints
+
 const faker = require('faker');
+const moment = require('moment');
 
 exports.seed = function(knex, Promise) {
   return knex('posts').del()
@@ -7,6 +10,8 @@ exports.seed = function(knex, Promise) {
         getPosts());
     });
 };
+
+
 
 function getPosts() {
   const posts = [];
