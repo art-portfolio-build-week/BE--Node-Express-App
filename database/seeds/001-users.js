@@ -24,8 +24,8 @@ function createUsers() {
       email: faker.internet.email(),
       password: bcrypt.hashSync('pass'),
       dob: moment(faker.date.between("1950-01-01", "2000-01-01")).format('L'),
-      instagramHandle: faker.internet.userName(),
-      witterHandle: faker.internet.userName()
+      uvp: faker.company.bs(),
+      phone: faker.phone.phoneNumberFormat(0)
     }
     users.push(user);
   }
