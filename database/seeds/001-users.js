@@ -25,10 +25,9 @@ function createUsers() {
       password: bcrypt.hashSync('pass'),
       dob: moment(faker.date.between("1950-01-01", "2000-01-01")).format('L'),
       uvp: faker.company.bs(),
-      phone: faker.phone.phoneNumberFormat(0)
+      phone: Math.floor(Math.random()*10000000000)
     }
     users.push(user);
   }
-
   return users
 }
