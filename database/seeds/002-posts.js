@@ -29,7 +29,7 @@ function getPosts() {
     urlImgIndex = Math.floor((Math.random() * 10) + 1);
 
     post = {
-      username_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the initial users
+      username_id: Math.floor( (Math.random()*5) + 8 ),    //pick foreign keys among the existing users: check users table
       title: faker.company.catchPhraseDescriptor(),
       description: faker.company.bs(),
       category: category,
