@@ -16,8 +16,10 @@ function getPosts() {
   const categories = ['food', 'technics', 'nature', 'city', 'business', 'fashion', 
     'sports', 'abstract', 'nightlife','people','transport']
   let category = '';
+  let urlImgIndex=0;
 
   for(let i=0; i<nbrPosts; i++) {
+
     category = categories[Math.floor(Math.random() * categories.length)]
     urlImgIndex = Math.floor((Math.random() * 10) + 1);
 
@@ -30,7 +32,7 @@ function getPosts() {
       votes: 0, 
       timestamp: moment(faker.date.between("2017-01-01", "2019-05-01")).format()
     }
-    
+
     posts.push(post);
   }
 
