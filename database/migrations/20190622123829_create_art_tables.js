@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
         tbl.string('email', 128).notNullable().unique();
         tbl.string('password', 128).notNullable();
         tbl.string('dob', 128);
-        tbl.string('instagramHandle', 128);
-        tbl.string('witterHandle', 128);
+        tbl.string('uvp', 512);
+        tbl.integer('phone').unsigned();
     })
 
     .createTable('posts', (tbl) => {
@@ -22,6 +22,9 @@ exports.up = function(knex, Promise) {
             .onDelete("RESTRICT")
             .onUpdate("CASCADE");
         tbl.string('description', 1024).notNullable();
+        tbl.string('title', 256).notNullable();
+        tbl.string('category', 128).notNullable();
+        tbl.string('timestamp', 128).notNullable();        
         tbl.string('imgURL').notNullable();
         tbl.integer('votes').unsigned().defaultTo(0);
         
