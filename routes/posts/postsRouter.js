@@ -29,7 +29,8 @@ router.get('/posts/:id', async (req, res) => {
     try {
         const post = await postModel.findBy({id});
             if(post) {
-                res.status(200).json(post);
+                const author = findAuthorOfPost({id})
+                res.status(200).json(post, author);
             }
             else {
                 res.status(404).json({message:'post not found'});

@@ -12,6 +12,14 @@ function findBy(filter) {
     return db('posts').where(filter).first();
 }
 
+function findAuthorOfPost(id) {
+    return select('users.username')
+        .from('posts')
+        .leftJoin('users', 'users.id', 'posts.username_id')
+        .where(id)
+        .first()
+}
+
 function add(post) {
     return db('posts').insert(post, 'id')
         .then( ids => {
@@ -37,6 +45,7 @@ function update(id, changes) {
 module.exports = {
     findAll,
     findBy,
+    findAuthorOfPost,
     add,
     update,
 }

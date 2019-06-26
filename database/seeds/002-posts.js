@@ -13,23 +13,28 @@ function getPosts() {
   let post = {};
   const nbrPosts = 35;
 
-  topics = ['food', 'technics', 'nature', 'city', 'business', 'fashion', 
+  const categories = ['food', 'technics', 'nature', 'city', 'business', 'fashion', 
     'sports', 'abstract', 'nightlife','people','transport']
+  let category = '';
 
   for(let i=0; i<nbrPosts; i++) {
+    category = categories[Math.floor(Math.random() * categories.length)]
+    urlImgIndex = Math.floor((Math.random() * 10) + 1);
+
     post = {
       username_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the initial users
+      title: faker.company.catchPhraseDescriptor(),
       description: faker.company.bs(),
-      imgURL: faker.image.imageUrl(640, 480, getTopic() ),
-      votes: 0
+      category: category,
+      imgURL: faker.image.imageUrl(640, 480, category ) + urlImgIndex,
+      votes: 0, 
+      timestamp: moment(faker.date.between("2017-01-01", "2019-05-01")).format()
     }
+    
     posts.push(post);
   }
 
   return posts;
 }
 
-function getTopic() {
-  return topics[Math.floor(Math.random() * topics.length)]
-}
 
