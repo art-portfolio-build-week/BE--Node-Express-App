@@ -33,7 +33,6 @@ function add(post) {
 }
 
 function update(id, changes) {
-    console.log("in model: ")
     return db('posts')
     .where(id)
     .update(changes)

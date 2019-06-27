@@ -50,14 +50,15 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
     const {id} = req.params;
     const changes = req.body;
 
+
     if(changes.id || changes.username_id) {
         res.status(403).json({errorMessage: "Not allowed to change ids" })
     }
 
-    if(changes.description || changes.imgURL || votes) {
+    if(changes.description || changes.imgURL || changes.title || changes.category) {
         try {
             modifiedPost = await postModel.update({id}, changes)
-            console.log(modifiedPost);
+
             if(modifiedPost) {
                 res.status(200).json({modifiedPost: modifiedPost});
             }
@@ -100,6 +101,36 @@ router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
     }
 })
 
+/****************************************************************************/
+/*                              Vote                                        */
+/****************************************************************************/
+
+router.put('/posts/votes/:id', verifyCredentials, async (req, res) => {
+    const {id} = req.params;
+    const votes = req.body;
+
+    if(votes) {
+        try {
+            modifiedPost = await postModel.update({id}, votes)
+            if(modifiedPost) {
+                res.status(200).json({newCount: modifiedPost.votes});
+            }
+            else {
+                res.status(404).json({message: 'post not found'});
+            }
+        }
+        catch {
+            res.status(500).json({message: "There was a problem updating the post"});
+        }
+    }
+
+    else {
+        res.status(400).json({message: 'no new vote provided'});
+    }
+
+    
+})
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*                                           MIDDLEWARE                                                  */
@@ -122,7 +153,7 @@ function validatePostInfo(req, res, next) {
 }
 
 /****************************************************************************/
-/*         Check if user is logged in and save header info in req.user      */
+/*      Check if user is logged in and save username and id in req.user      */
 /****************************************************************************/
 
 function verifyCredentials(req, res, next) {
