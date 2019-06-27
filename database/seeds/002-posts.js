@@ -33,7 +33,7 @@ function getPosts() {
       title: faker.company.catchPhraseDescriptor(),
       description: faker.company.bs(),
       category: category,
-      imgURL: faker.image.imageUrl(640, 480, category ) + urlImgIndex,
+      imgURL: faker.image.imageUrl(640, 480, category ) + '/' + urlImgIndex,
       votes: 0, 
       timestamp: moment(faker.date.between("2017-01-01", "2019-05-01")).format()
     }
