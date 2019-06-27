@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
         tbl.string('password', 128).notNullable();
         tbl.string('dob', 128);
         tbl.string('uvp', 512);
-        tbl.integer('phone').unsigned();
+        tbl.bigint('phone').unsigned();
     })
 
     .createTable('posts', (tbl) => {
