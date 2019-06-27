@@ -55,7 +55,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
         res.status(403).json({errorMessage: "Not allowed to change ids" })
     }
 
-    if(!changes.description && !changes.imgURL && !changes.title && !changes.category) {
+    if(!changes.description && !changes.imgURL && !changes.title && !changes.category && !timestamp) {
         res.status(400).json({errorMessage: "No field to update"})
     }
 
@@ -89,29 +89,6 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
         res.status(500).json({message: "There was a problem finding the post"});
     }
     
-
-
-    
-
-    if(changes.description || changes.imgURL || changes.title || changes.category) {
-        try {
-            modifiedPost = await postModel.update({id}, changes)
-
-            if(modifiedPost) {
-                res.status(200).json({modifiedPost: modifiedPost});
-            }
-            else {
-                res.status(404).json({message: 'post not found'});
-            }
-        }
-        catch {
-            res.status(500).json({message: "There was a problem updating the post"});
-        }
-    }
-    else {
-        res.status(400).json({message: 'no valid fields to change'});
-        
-    }
 })
 
 
@@ -218,9 +195,9 @@ router.put('/posts/votes/:id', verifyCredentials, async (req, res) => {
 
 
 
-/****************************************************************************/
-/*            Check if description and image URL exist in req.body          */
-/****************************************************************************/
+/*********************************************************************************/
+/* Check if description, imgURL, title, category and timestamp exist in req.body */
+/*********************************************************************************/
 
 function validatePostInfo(req, res, next) {
     const post = req.body;
