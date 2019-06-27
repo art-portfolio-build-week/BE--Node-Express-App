@@ -32,7 +32,7 @@ function getPosts() {
     post = {
       username_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the existing users: check users table
       title: faker.company.catchPhraseDescriptor(),
-      description: faker.company.bs(),
+      description: faker.lorem.paragraph(),
       category: category,
       imgURL: faker.image.imageUrl(640, 480, genre ) + '/' + urlImgIndex,
       votes: 0, 
