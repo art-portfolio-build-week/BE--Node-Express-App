@@ -102,7 +102,51 @@ router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
 })
 
 /****************************************************************************/
-/*                              Vote                                        */
+/*                              Delete a post                               */
+/****************************************************************************/
+
+router.delete('/posts/:id', verifyCredentials, async (req, res) => {
+    
+    const {id} = req.params;
+    const usernameId = req.user.username_id;
+    console.log(req.user)
+    console.log('usernameID:', usernameId)
+
+    try {
+        const post = await postModel.findBy({id})
+        console.log(post);
+        if (post) {
+            if(post.username_id === usernameId) {
+                try {
+                    const count = await postModel.remove({id})
+                    if(count>0) {
+                        res.status(200).json({message: `${count} post(s) deleted`})
+                    }
+                    else {
+                        res.status(500).json({errorMessage: 'post to delete not found'});                    
+                    }
+                }
+                catch {
+                    res.status(500).json({message: "There was a problem deleting the post"});
+                }
+            }
+            else {
+                res.status(404).json("errorMessage: Not allowed to delete")
+            }
+        }
+        else {
+            res.status(404).json({message: 'post not found'});                    
+        }
+    }
+    catch {
+        res.status(500).json({message: "There was a problem finding the post"});
+    }
+        
+    
+});
+
+/****************************************************************************/
+/*                              update Vote                                 */
 /****************************************************************************/
 
 router.put('/posts/votes/:id', verifyCredentials, async (req, res) => {

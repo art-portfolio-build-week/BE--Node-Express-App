@@ -44,9 +44,16 @@ function update(id, changes) {
     });
 }
 
+function remove(id) {
+    return db('posts')
+    .where(id)
+    .del()
+}
+
 module.exports = {
     findAll,
     findBy,
     add,
     update,
+    remove,
 }
