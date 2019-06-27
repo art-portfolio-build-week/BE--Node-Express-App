@@ -49,11 +49,49 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
 
     const {id} = req.params;
     const changes = req.body;
-
+    const usernameId = req.user.username_id;
 
     if(changes.id || changes.username_id) {
         res.status(403).json({errorMessage: "Not allowed to change ids" })
     }
+
+    if(!changes.description && !changes.imgURL && !changes.title && !changes.category) {
+        res.status(400).json({errorMessage: "No field to update"})
+    }
+
+    try {
+        const post = await postModel.findBy({id})
+
+        if(post) {
+            if(post.username_id === usernameId) {
+                try {
+                    const modifiedPost = await postModel.update({id}, changes)
+                    if(modifiedPost) {
+                        res.status(200).json(modifiedPost)
+                    }
+                    else {
+                        res.status(500).json({errorMessage: 'post to update not found'});                    
+                    }
+                }
+                catch {
+                    res.status(500).json({errorMessage: "There was a problem updating the post"});
+                }
+            }
+            else {
+                res.status(403).json("errorMessage: Not allowed to update")
+            }
+        }
+        else {
+            res.status(404).json({errorMessage: 'post not found'});                    
+        }
+    }
+    catch {
+        res.status(500).json({message: "There was a problem finding the post"});
+    }
+    
+
+
+    
 
     if(changes.description || changes.imgURL || changes.title || changes.category) {
         try {
@@ -109,12 +147,10 @@ router.delete('/posts/:id', verifyCredentials, async (req, res) => {
     
     const {id} = req.params;
     const usernameId = req.user.username_id;
-    console.log(req.user)
-    console.log('usernameID:', usernameId)
 
     try {
         const post = await postModel.findBy({id})
-        console.log(post);
+
         if (post) {
             if(post.username_id === usernameId) {
                 try {
@@ -127,15 +163,15 @@ router.delete('/posts/:id', verifyCredentials, async (req, res) => {
                     }
                 }
                 catch {
-                    res.status(500).json({message: "There was a problem deleting the post"});
+                    res.status(500).json({errorMessage: "There was a problem deleting the post"});
                 }
             }
             else {
-                res.status(404).json("errorMessage: Not allowed to delete")
+                res.status(403).json("errorMessage: Not allowed to delete")
             }
         }
         else {
-            res.status(404).json({message: 'post not found'});                    
+            res.status(404).json({errorMessage: 'post not found'});                    
         }
     }
     catch {
