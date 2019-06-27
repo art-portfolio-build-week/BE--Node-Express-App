@@ -26,14 +26,14 @@ module.exports = {
   testing: {
     client: 'sqlite3',
     connection: {
-      filename: './database/testing/test.db3',
+      filename: './testing/database/test.db3',
     },
     useNullAsDefault: true,
     migrations: {
-      directory: './database/testing/migrations',
+      directory: './testing/database/migrations',
     },
     seeds: {
-      directory: './database/testing/seeds',
+      directory: './testing/database/seeds',
     },
     pool: {
       afterCreate: (conn, done) => {
