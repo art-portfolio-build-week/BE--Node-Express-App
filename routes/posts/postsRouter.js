@@ -22,15 +22,14 @@ router.get('/posts', async (req, res) => {
 })
 
 /****************************************************************************/
-/*                              Get a post  by Id                          */
+/*                              Get a post  by Id                           */
 /****************************************************************************/
 router.get('/posts/:id', async (req, res) => {
     const {id} = req.params;
     try {
-        const post = await postModel.findBy({id});
+        const post = await postModel.findBy({id}); 
             if(post) {
-                const author = findAuthorOfPost({id})
-                res.status(200).json(post, author);
+                res.status(200).json(post);
             }
             else {
                 res.status(404).json({message:'post not found'});
@@ -58,6 +57,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
     if(changes.description || changes.imgURL || votes) {
         try {
             modifiedPost = await postModel.update({id}, changes)
+            console.log(modifiedPost);
             if(modifiedPost) {
                 res.status(200).json({modifiedPost: modifiedPost});
             }
@@ -85,10 +85,12 @@ router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
         username_id: req.user.username_id,
         imgURL: req.body.imgURL,
         description: req.body.description,
+        title: req.body.title,
+        category: req.body.category,
+        timestamp: req.body.timestamp,
         votes: 0 
     }
 
-    console.log(post )
     try {
         const newPost = await postModel.add(post, 'id');
         res.status(201).json({newPost});
@@ -111,11 +113,11 @@ router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
 
 function validatePostInfo(req, res, next) {
     const post = req.body;
-    if(post.description && post.imgURL) {
+    if(post.description && post.imgURL && post.title && post.category && post.timestamp) {
         next();
     }
     else {
-        res.status(422).json({"errorMessage": "description and imgURL are required"});
+        res.status(422).json({"errorMessage": "description, imgURL, title, category and timestamp are required"});
     }
 }
 

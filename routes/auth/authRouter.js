@@ -18,6 +18,7 @@ router.post('/register', userCredentialsReceived, duplicatedCredentials, async (
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
+    console.log(user);
 
     try {
         const addedUser = await authModel.add(user);

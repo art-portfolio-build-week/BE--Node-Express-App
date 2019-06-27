@@ -5,6 +5,7 @@ function findBy(filter) {
 }
 
 function add(user) {
+    console.log("in Model:");
     return db('users').insert(user, 'id')
         .then(ids => {
             return db('users')

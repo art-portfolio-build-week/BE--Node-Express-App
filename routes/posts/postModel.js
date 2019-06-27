@@ -12,13 +12,15 @@ function findBy(filter) {
     return db('posts').where(filter).first();
 }
 
-function findAuthorOfPost(id) {
-    return select('users.username')
-        .from('posts')
-        .leftJoin('users', 'users.id', 'posts.username_id')
-        .where(id)
-        .first()
-}
+// function findAuthorOfPost(id) {
+//     console.log("in Model:");
+//     console.log(id)
+//     return db.select('posts.id', 'username_id', 'users.username')
+//         .from('users')
+//         .leftJoin('posts', 'users.id', 'posts.username_id')
+//         // .where('posts.id', id)
+//         // .first()
+// }
 
 function add(post) {
     return db('posts').insert(post, 'id')
@@ -31,6 +33,7 @@ function add(post) {
 }
 
 function update(id, changes) {
+    console.log("in model: ")
     return db('posts')
     .where(id)
     .update(changes)
@@ -45,7 +48,6 @@ function update(id, changes) {
 module.exports = {
     findAll,
     findBy,
-    findAuthorOfPost,
     add,
     update,
 }
