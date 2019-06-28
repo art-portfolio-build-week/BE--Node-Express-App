@@ -12,16 +12,6 @@ function findBy(filter) {
     return db('posts').where(filter).first();
 }
 
-// function findAuthorOfPost(id) {
-//     console.log("in Model:");
-//     console.log(id)
-//     return db.select('posts.id', 'username_id', 'users.username')
-//         .from('users')
-//         .leftJoin('posts', 'users.id', 'posts.username_id')
-//         // .where('posts.id', id)
-//         // .first()
-// }
-
 function add(post) {
     return db('posts').insert(post, 'id')
         .then( ids => {

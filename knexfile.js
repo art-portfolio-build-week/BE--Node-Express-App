@@ -30,10 +30,10 @@ module.exports = {
     },
     useNullAsDefault: true,
     migrations: {
-      directory: './testing/database/migrations',
+      directory: './database/migrations',
     },
     seeds: {
-      directory: './testing/database/seeds',
+      directory: './database/seeds',
     },
     pool: {
       afterCreate: (conn, done) => {

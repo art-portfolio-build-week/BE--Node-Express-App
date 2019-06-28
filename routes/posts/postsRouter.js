@@ -98,7 +98,7 @@ router.put('/posts/:id', verifyCredentials, async (req, res) => {
 
 router.post('/posts', validatePostInfo, verifyCredentials, async (req, res) => {
     const post = {
-        username_id: req.user.username_id,
+        username_id: req.user.username_id,  //value from middleware
         imgURL: req.body.imgURL,
         description: req.body.description,
         title: req.body.title,

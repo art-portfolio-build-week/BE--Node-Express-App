@@ -8,6 +8,9 @@
     "server": "nodemon index.js",
     "start": "node index.js"
   },
+  "jest": {
+		"testEnvironment": "node"
+	},
   "keywords": [],
   "author": "",
   "license": "ISC",
