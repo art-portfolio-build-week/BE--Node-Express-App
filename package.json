@@ -32,5 +32,8 @@
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "supertest": "^4.0.2"
+  },
+  "comments": {
+    "set-value": "bumped to 2.0.1 to fix high severity security issue "
   }
 }
