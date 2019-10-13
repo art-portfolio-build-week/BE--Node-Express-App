@@ -19,7 +19,7 @@ function getPosts() {
 
   const genres = ['food', 'technics', 'nature', 'city', 'business', 'fashion', 
     'sports', 'abstract', 'nightlife','people','transport']
-    
+
   const categories = ['photography', 'design', 'illustration' ];
   let urlImgIndex=0;
 
