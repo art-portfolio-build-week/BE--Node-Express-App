@@ -5,13 +5,17 @@ const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex, Promise) {
   
-  return knex('users').del() 
+  return knex('users').truncate() 
     .then(function () {
       return knex('users').insert(
         createUsers()
       );
     });
 };
+
+/******************************************************/
+/*  Create 5 fake users to allow front end design     */
+/******************************************************/
 
 function createUsers() {
   const users = [];

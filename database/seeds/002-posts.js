@@ -4,14 +4,16 @@ const faker = require('faker');
 const moment = require('moment');
 
 exports.seed = function(knex, Promise) {
-  return knex('posts').del()
+  return knex('posts').truncate()
     .then(function () {
       return knex('posts').insert(
         getPosts());
     });
 };
 
-
+/**********************************************************************************/
+/*     Create randomly generated links to images from the loremPixe web site      */
+/******************************************************************************** */
 function getPosts() {
   const posts = [];
   let post = {};
@@ -21,6 +23,7 @@ function getPosts() {
     'sports', 'abstract', 'nightlife','people','transport']
 
   const categories = ['photography', 'design', 'illustration' ];
+  
   let urlImgIndex=0;
 
   for(let i=0; i<nbrPosts; i++) {
@@ -30,7 +33,7 @@ function getPosts() {
     category = categories[Math.floor(Math.random() * categories.length)]
 
     post = {
-      username_id: Math.floor( (Math.random()*5) + 1 ),    //pick foreign keys among the existing users: check users table
+      username_id: Math.floor( (Math.random()*5)),    //pick foreign keys among the existing users: check users table
       title: faker.company.catchPhraseDescriptor(),
       description: faker.lorem.paragraph(),
       category: category,

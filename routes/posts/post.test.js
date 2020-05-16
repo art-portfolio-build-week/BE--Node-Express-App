@@ -19,10 +19,6 @@ beforeAll(done => {
 });
 
 describe('postings', () => {
-
-    it('should set environment to testing', () => {
-        expect(process.env.DB_ENV).toBe('testing');
-      });
     
 
     describe('GET postings', () => {
@@ -55,11 +51,5 @@ describe('postings', () => {
             });
         });
     })
-
-        
-
-    
-
-  
 
 })
