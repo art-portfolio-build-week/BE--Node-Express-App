@@ -1,6 +1,6 @@
 # BE--Node-Express-App
 
-This API allow users to register and access and upload image links for artists to showcase their work
+This API allow users to register, access and upload image links for artists to showcase their work
 
 # REST API
 
