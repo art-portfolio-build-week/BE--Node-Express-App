@@ -39,12 +39,13 @@ The back end is hosted in Heroku at the following URL:
 - Content-Type
   - application/json
 - Authorization
-### BODY raw
-- {"username":"test1", "email":"test1@mail.com", "password":"xxxxxxxx", "dob":"01/01/1970", "phone": "1234567891", "uvp":"my uVP" }
+
+### PARAMS
+- BODY raw
+  - {"username":"test1", "email":"test1@mail.com", "password":"xxxxxxxx", "dob":"01/01/1970", "phone": "1234567891", "uvp":"my uVP" }
 
 
 ### Example Request
-- Register
 - curl --location --request POST 'https://artista-backend.herokuapp.com/api/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{"username":"test1", "email":"test1@mail.com", "password":"xxxxxxx", "dob":"01/01/1970", "phone": "1234567891", "uvp":"my uVP" }'
@@ -73,11 +74,13 @@ The back end is hosted in Heroku at the following URL:
 - username
 ### HEADERS
 - Content-Type
-  -application/json
+  - application/json
 - Authorization
   - token information
-### BODY raw
-- {"email":"test1@mail.com", "password":"xxxxxxxx"}
+
+### PARAMS
+- BODY raw
+  - {"email":"test1@mail.com", "password":"xxxxxxxx"}
 
 ### Example Request
 - curl --location --request POST 'https://artista-backend.herokuapp.com/api/login' \
@@ -111,7 +114,6 @@ The back end is hosted in Heroku at the following URL:
   - post corresponding to that id
 
 ### Example Request
-- Get all posts
 - curl --location --request GET 'https://artista-backend.herokuapp.com/api/posts/'
 
 ### Example Response
@@ -156,7 +158,6 @@ The back end is hosted in Heroku at the following URL:
   - token information
 
 ### Example Request
-- Get a user by id and related posts
 - curl --location --request GET 'https://artista-backend.herokuapp.com/api/users/1' \
 --header 'Authorization: token information'
 ### Example Response
@@ -213,7 +214,6 @@ The back end is hosted in Heroku at the following URL:
 
 
 ### Example Request
-- upload new post
   - curl --location --request POST 'https://artista-backend.herokuapp.com/api/posts?=' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: token information' \
@@ -221,7 +221,7 @@ The back end is hosted in Heroku at the following URL:
 
 ### Example Response
 - 201 － Created
-  - {
+- {
   "newPost": {
     "id": 38,
     "username_id": 7,
@@ -261,12 +261,12 @@ The back end is hosted in Heroku at the following URL:
   - application/json
 - Authorization
   - token information
-### BODY raw
-- {"description": "new descriptive flock","imgURL":"http://lorempixel.com/640/480/e-commerce/1", "votes":"99", "title":"title", "category":"e-commerce", "timestamp":"time" }
+### PARAMS
+- BODY raw
+  - {"description": "new descriptive flock","imgURL":"http://lorempixel.com/640/480/e-commerce/1", "votes":"99", "title":"title", "category":"e-commerce", "timestamp":"time" }
 
 
 ### Example Request
-- Update a post
   - curl --location --request PUT 'https://artista-backend.herokuapp.com/api/posts/37' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: token information' \
@@ -305,19 +305,19 @@ The back end is hosted in Heroku at the following URL:
   - application/json
 - Authorization
   - token information
-### BODY raw
-- {"votes": "2"}
+### PARAMS
+- BODY raw
+  - {"votes": "2"}
 
 
 ### Example Request
-- Update a vote
   - curl --location --request PUT 'https://artista-backend.herokuapp.com/api/posts/votes/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: token information' \
 --data-raw '{"votes": "2"}'
 ### Example Response
 - 200 － OK
-  - {
+- {
   "newCount": 2
 }
 
@@ -331,7 +331,7 @@ The back end is hosted in Heroku at the following URL:
 ### required field:
 
 - id in URL
-Need to own the post
+- Need to own the post
 
 ### return value: 
 - message with count of deleted posts
@@ -343,14 +343,13 @@ Need to own the post
   - token information
 
 ### Example Request
-- Delete a post
 - curl --location --request DELETE 'https://artista-backend.herokuapp.com/api/posts/36' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: token information' \
 --data-raw ''
 ### Example Response
 - 200 － OK
-  - {
+- {
   "message": "1 post(s) deleted"
 }
 
