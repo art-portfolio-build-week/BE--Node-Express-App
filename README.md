@@ -79,6 +79,19 @@ The back end is hosted in Heroku at the following URL:
 ### BODY raw
 - {"email":"test1@mail.com", "password":"xxxxxxxx"}
 
+### Example Request
+- curl --location --request POST 'https://artista-backend.herokuapp.com/api/login' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: token information' \
+--data-raw '{"email":"test1@mail.com", "password":"xxxxxxxx"}'
+
+### Example Response
+- 200 － OK
+- {
+  "username": "test1",
+  "id": 7,
+  "token": "token information"
+}
 ***
 ## GET: Get all posts
 
@@ -97,6 +110,36 @@ The back end is hosted in Heroku at the following URL:
 - return value:
   - post corresponding to that id
 
+### Example Request
+- Get all posts
+- curl --location --request GET 'https://artista-backend.herokuapp.com/api/posts/'
+
+### Example Response
+- 200 － OK
+- [
+  {
+    "id": 1,
+    "username_id": 1,
+    "description": "user-centric benchmark initiatives",
+    "title": "client-driven",
+    "category": "transport",
+    "timestamp": "2018-07-04T18:17:00+00:00",
+    "imgURL": "http://lorempixel.com/640/480/transport/6",
+    "votes": 2,
+    "username": "Frances Bartell IV"
+  },
+  {
+    "id": 2,
+    "username_id": 4,
+    "description": "efficient aggregate channels",
+    "title": "client-server",
+    "category": "fashion",
+    "timestamp": "2017-04-12T20:58:20+00:00",
+    "imgURL": "http://lorempixel.com/640/480/fashion/1",
+    "votes": 0,
+    "username": "Piper Hodkiewicz"
+  }
+  ]
 ***
 ## GET: Get a user by id with his/her related posts
 - /api/users/1
