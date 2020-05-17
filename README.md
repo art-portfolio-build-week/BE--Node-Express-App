@@ -1,11 +1,19 @@
 # BE--Node-Express-App
 
-This API allow users to register, access and upload image links for artists to showcase their work
+This API allow users to register, access and upload image links for artists to showcase their work.
+
+This back end was built with Node.js and Express. Originally developped with SQLite, the app was later ported to Heroku and the database converted from SQLite to PostgreSQL
+
+The front end tapping into this API can be found at the following URL:
+- https://artista-fe.netlify.app/
+
+The back end is hosted in Heroku at the following URL:
+- https://artista-backend.herokuapp.com/
 
 # REST API
 
 ## POST: Register
-- https://artista-backend.herokuapp.com/api/register
+- /api/register
 ### required:
 
 - email (string)
@@ -50,7 +58,7 @@ This API allow users to register, access and upload image links for artists to s
 
 ***
 ## POST: Login
-- https://artista-backend.herokuapp.com/api/login
+- /api/login
 ### required fields:
 
 - email (string)
@@ -74,7 +82,7 @@ This API allow users to register, access and upload image links for artists to s
 ***
 ## GET: Get all posts
 
-- https://artista-backend.herokuapp.com/api/posts/
+- /api/posts/
 
 - return value: 
     - All existing posts
@@ -91,7 +99,7 @@ This API allow users to register, access and upload image links for artists to s
 
 ***
 ## GET: Get a user by id with his/her related posts
-- https://artista-backend.herokuapp.com/api/users/1
+- /api/users/1
 ### required fields:
 
 - id in URL
@@ -128,7 +136,7 @@ This API allow users to register, access and upload image links for artists to s
 
 ***
 ## POST: upload new post
-- https://artista-backend.herokuapp.com/api/posts
+- /api/posts
 
 ### required : 
 - token
@@ -185,7 +193,7 @@ This API allow users to register, access and upload image links for artists to s
 ***
 
 ## PUT: Update a post
-- https://artista-backend.herokuapp.com/api/posts/37
+- /api/posts/37
 
 ### require: 
 - token
@@ -235,8 +243,8 @@ This API allow users to register, access and upload image links for artists to s
 }
 
 ***
-## PUT Update a vote
-https://artista-backend.herokuapp.com/api/posts/votes/1
+## PUT: Update a vote
+/api/posts/votes/1
 
 ### required: 
 - token
@@ -272,7 +280,7 @@ https://artista-backend.herokuapp.com/api/posts/votes/1
 
 ***
 ## DEL: Delete a post
-- https://artista-backend.herokuapp.com/api/posts/36
+- /api/posts/36
 
 ### required:
 - token
