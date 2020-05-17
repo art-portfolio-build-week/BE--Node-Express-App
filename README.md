@@ -103,16 +103,6 @@ The back end is hosted in Heroku at the following URL:
 - return value: 
     - All existing posts
 
-***
-## GET: Get a Post by id
-- /api/posts/15
-
-- Require:
-  - id in the URL
-
-- return value:
-  - post corresponding to that id
-
 ### Example Request
 - curl --location --request GET 'https://artista-backend.herokuapp.com/api/posts/'
 
@@ -143,6 +133,31 @@ The back end is hosted in Heroku at the following URL:
   }
   ]
 ***
+## GET: Get a Post by id
+- /api/posts/14
+
+- Require:
+  - id in the URL
+
+- return value:
+  - post corresponding to that id
+
+### Example Request
+- curl --location --request GET 'https://artista-backend.herokuapp.com/api/posts/14'
+
+### Example Response
+- 200 － OK
+- {
+  "id": 14,
+  "username_id": 2,
+  "description": "dynamic enhance deliverables",
+  "title": "incremental",
+  "category": "abstract",
+  "timestamp": "2017-06-28T20:57:26+00:00",
+  "imgURL": "http://lorempixel.com/640/480/abstract/4",
+  "votes": 0
+}
+***
 ## GET: Get a user by id with his/her related posts
 - /api/users/1
 ### required fields:
@@ -150,9 +165,9 @@ The back end is hosted in Heroku at the following URL:
 - id in URL
 ### return values:
 
-  - user profile
+- user profile
 
-  - user postings
+- user postings
 ### HEADERS
 - Authorization
   - token information
@@ -177,6 +192,23 @@ The back end is hosted in Heroku at the following URL:
       "id": 12,
       "username_id": 1,
       "description": "B2B synthesize experiences",
+      "title": "hybrid",
+      "category": "nature",
+      "timestamp": "2019-01-09T01:07:41+00:00",
+      "imgURL": "http://lorempixel.com/640/480/nature/5",
+      "votes": 0
+    },
+    {
+      "id": 15,
+      "username_id": 1,
+      "description": "24/7 optimize vortals",
+      "title": "directional",
+      "category": "transport",
+      "timestamp": "2018-08-02T01:56:07+00:00",
+      "imgURL": "http://lorempixel.com/640/480/transport/8",
+      "votes": 0
+    }
+    ]
 
 ***
 ## POST: upload new post
