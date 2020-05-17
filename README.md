@@ -89,7 +89,7 @@ The back end is hosted in Heroku at the following URL:
 
 ***
 ## GET: Get a Post by id
-- https://artista-backend.herokuapp.com/api/posts/15
+- /api/posts/15
 
 - Require:
   - id in the URL
