@@ -115,7 +115,7 @@ This API allow users to register and access and upload image links for artists t
     "id": 1,
     "username": "Frances Bartell IV",
     "email": "Korbin.Renner97@hotmail.com",
-    "password": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "password": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "dob": "10/13/1964",
     "uvp": "enterprise leverage e-business",
     "phone": "14335896013"
