@@ -24,7 +24,7 @@
     "knex": "^0.19.5",
     "moment": "^2.24.0",
     "pg": "^7.12.1",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
